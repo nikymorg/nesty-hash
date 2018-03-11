@@ -71,23 +71,27 @@ class HashForm extends Component {
     const { depth } = this.state
 
     return (
-      <Form onSubmit={ this.handleSubmit }>
-        <Form.Group grouped>
-          <label>Data Types</label>
-          { this.renderCheckboxes(dataMapper[language]) }
-        </Form.Group>
-        <Form.Field
-          label='Max Nested Depth'
-          control='input'
-          type='number'
-          min={1}
-          max={10}
-          value={ depth }
-          onChange={ this.handleDepth }
-        />
-        <Form.Field control='button'>
-        Create Data Structure
-        </Form.Field>
+      <Form
+        onSubmit={ this.handleSubmit }
+      >
+        <div className='flex'>
+          <Form.Group grouped>
+            <label>Data Types</label>
+            { this.renderCheckboxes(dataMapper[language]) }
+          </Form.Group>
+          <Form.Field
+            label='Max Nested Depth'
+            control='input'
+            type='number'
+            min={1}
+            max={10}
+            value={ depth }
+            onChange={ this.handleDepth }
+          />
+        </div>
+        <Form.Button basic color='grey' >
+          Create Data Structure
+        </Form.Button>
       </Form>
     )
   }

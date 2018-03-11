@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import Snippet from './components/snippet'
+import Header from './components/header'
 import Form from './components/form'
+import Snippet from './components/snippet'
 import DataGenerator from './helpers/generators'
+import './assets/custom.css'
 
 class App extends Component {
   constructor(props) {
@@ -22,17 +24,20 @@ class App extends Component {
     const { language, showSnippet, dataStructure } = this.state
 
     return (
-      <div className="App">
-        <Form
-          language={ language }
-          setStructure={ this.setStructure }
-        />
-        { showSnippet &&
-          <Snippet
+      <div className='main-container flex flex-column flex-even'>
+        <Header language={ language } />
+        <div className='flex flex-column flex-items-center flex-even'>
+          <Form
             language={ language }
-            content={ DataGenerator(dataStructure.depth, dataStructure.dataTypes) }
+            setStructure={ this.setStructure }
           />
-        }
+          { showSnippet &&
+            <Snippet
+              language={ language }
+              content={ DataGenerator(dataStructure.depth, dataStructure.dataTypes) }
+            />
+          }
+        </div>
       </div>
     );
   }

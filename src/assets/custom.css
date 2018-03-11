@@ -1,0 +1,51 @@
+.main-container {
+  height: 100vh;
+}
+
+/* Flexbox */
+.flex {
+  display: flex;
+}
+
+.flex-around {
+  justify-content: space-around;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-column {
+  flex-flow: column;
+}
+
+.flex-even {
+  justify-content: space-evenly;
+}
+
+.flex-items-center {
+  align-items: center;
+}
+
+/* .flex-align-self-start {
+  align-self: flex-start;
+} */
+
+.ruby-gradient {
+  background: #00C9FF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.javascript-gradient {
+  background: #e66465;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e66465, #9198e5);
+  background: linear-gradient(to right, #e66465, #9198e5);
+}
+
+/* Margin and Padding */
+/* .margin-none {
+  margin: 50;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+} */
