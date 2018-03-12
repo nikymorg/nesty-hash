@@ -11,7 +11,7 @@ const generate = {
         words = text.split('\n')
       }),
   array: (depth, dataTypes) => {
-    const length = randomize.number(9) + 1
+    const length = randomize.number(4) + 1
     let arr = []
     for (let i = 0; i < length; i++) {
       arr.push(DataGenerator(depth - 1, dataTypes))
@@ -19,7 +19,7 @@ const generate = {
     return arr
   },
   hash: (depth, dataTypes) => {
-    const length = randomize.number(10)
+    const length = randomize.number(5)
     let obj = {}
     for (let i = 0; i < length; i++) {
       const key = generate.hashKey(dataTypes)

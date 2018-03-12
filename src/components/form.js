@@ -22,7 +22,7 @@ class HashForm extends Component {
     this.isChecked = this.isChecked.bind(this)
   }
 
-  handleDataTypes({ target: { value } }) {
+  handleDataTypes(e, { value }) {
     if (this.isChecked(value)) {
       this.setState((prevState) => ({
         dataTypes: prevState.dataTypes.filter(type => type !== value)
@@ -51,11 +51,9 @@ class HashForm extends Component {
   }
 
   renderCheckboxes(dataTypes) {
-    return dataTypes.map(type =>  <Form.Field
-      key={type}
-      label={type}
-      control='input'
-      type='checkbox'
+    return dataTypes.map(type => <Form.Checkbox
+      key={ type }
+      label={ type }
       value={ type }
       onChange={ this.handleDataTypes }
       checked={ this.isChecked(type) }
@@ -72,24 +70,34 @@ class HashForm extends Component {
 
     return (
       <Form
+        inline
+        className='item-form form-container'
         onSubmit={ this.handleSubmit }
+        size='large'
       >
-        <div className='flex'>
-          <Form.Group grouped>
-            <label>Data Types</label>
-            { this.renderCheckboxes(dataMapper[language]) }
-          </Form.Group>
-          <Form.Field
-            label='Max Nested Depth'
-            control='input'
-            type='number'
-            min={1}
-            max={10}
-            value={ depth }
-            onChange={ this.handleDepth }
-          />
-        </div>
-        <Form.Button basic color='grey' >
+        <Form.Group
+          inline={true}
+          className='item-form-checkbox'
+        >
+          <Form.Field inline control='label'>Data Types:</Form.Field>
+          { this.renderCheckboxes(dataMapper[language]) }
+        </Form.Group>
+        <Form.Field
+          inline
+          className='item-form-number'
+          label='Max Nested Depth:'
+          control='input'
+          type='number'
+          min={1}
+          max={5}
+          value={ depth }
+          onChange={ this.handleDepth }
+        />
+        <Form.Button
+          basic
+          className='item-form-submit'
+          color='grey'
+        >
           Create Data Structure
         </Form.Button>
       </Form>

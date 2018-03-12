@@ -10,34 +10,33 @@ class App extends Component {
     super(props)
     this.state = {
       language: 'ruby',
-      showSnippet: false,
-      dataStructure: {}
+      dataStructure: {},
+      content: 'Generate a hash or array using the form above'
     }
     this.setStructure = this.setStructure.bind(this)
   }
 
   setStructure(dataStructure) {
-    this.setState({ dataStructure, showSnippet: true })
+    this.setState({
+      dataStructure,
+      content: DataGenerator(dataStructure.depth, dataStructure.dataTypes)
+    })
   }
 
   render() {
-    const { language, showSnippet, dataStructure } = this.state
+    const { language, content } = this.state
 
     return (
-      <div className='main-container flex flex-column flex-even'>
+      <div className='main-container'>
         <Header language={ language } />
-        <div className='flex flex-column flex-items-center flex-even'>
-          <Form
-            language={ language }
-            setStructure={ this.setStructure }
-          />
-          { showSnippet &&
-            <Snippet
-              language={ language }
-              content={ DataGenerator(dataStructure.depth, dataStructure.dataTypes) }
-            />
-          }
-        </div>
+        <Form
+          language={ language }
+          setStructure={ this.setStructure }
+        />
+        <Snippet
+          language={ language }
+          content={ content }
+        />
       </div>
     );
   }

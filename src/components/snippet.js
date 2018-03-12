@@ -10,21 +10,26 @@ import 'brace/mode/json'
 import 'brace/mode/python'
 import 'brace/mode/markdown'
 
+const stringify = (content) => {
+  if (typeof content === 'string')
+    return content
+  return JSON.stringify(content)
+}
+
 const Snippet = ({ content }) => (
   <AceEditor
     wrapEnabled
-    width='80%'
+    width='100%'
     mode='html_ruby'
+    className='item-snippet'
     theme='solarized_dark'
     fontSize={16}
     name='snippet'
-    readOnly={true}
     editorProps={{
       $blockScrolling: true
     }}
-    value={JSON.stringify(content)}
+    value={stringify(content)}
   />
 )
-
 
 export default Snippet
