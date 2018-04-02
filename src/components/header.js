@@ -1,12 +1,6 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 
-// const headerMapper = {
-//   ruby: {},
-//   javascript: {},
-//   python: {}
-// }
-
 const AppHeader = ({ language }) => {
   return (
     <div className={`${language}-gradient item-header header-container padding-top-l`}>
