@@ -70,7 +70,6 @@ class HashForm extends Component {
 
     return (
       <Form
-        inline={true}
         className='item-form form-container'
         onSubmit={ this.handleSubmit }
         size='large'
@@ -79,7 +78,7 @@ class HashForm extends Component {
           inline={true}
           className='item-form-checkbox'
         >
-          <Form.Field inline control='label'>Data Types:</Form.Field>
+          <Form.Field control='label'>Data Types:</Form.Field>
           { this.renderCheckboxes(dataMapper[language]) }
         </Form.Group>
         <Form.Field
