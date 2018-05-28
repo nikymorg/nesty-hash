@@ -33,7 +33,6 @@ const prettify = (content) => {
   return formattedContent
 }
 
-
 const format = {
   default: (c) => {
     return c
