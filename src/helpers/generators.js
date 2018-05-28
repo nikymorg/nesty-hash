@@ -19,7 +19,7 @@ const generate = {
     return arr
   },
   hash: (depth, dataTypes) => {
-    const length = randomize.number(5)
+    const length = randomize.number(4) + 1
     let obj = {}
     for (let i = 0; i < length; i++) {
       const key = generate.hashKey(dataTypes)
