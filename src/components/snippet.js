@@ -23,6 +23,7 @@ const Snippet = ({ content }) => (
     editorProps={{
       $blockScrolling: true
     }}
+    showPrintMargin={false}
     value={contentFormatter(content)}
   />
 )
