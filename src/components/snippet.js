@@ -20,9 +20,7 @@ const Snippet = ({ content }) => (
     theme='solarized_dark'
     fontSize={16}
     name='snippet'
-    editorProps={{
-      $blockScrolling: true
-    }}
+    editorProps={{$blockScrolling: true}}
     showPrintMargin={false}
     value={contentFormatter(content)}
   />
