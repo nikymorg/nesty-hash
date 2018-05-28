@@ -1,5 +1,6 @@
 import React from 'react'
 import AceEditor from 'react-ace'
+import contentFormatter from '../helpers/prettify'
 
 import 'brace/theme/solarized_dark';
 import 'brace/ext/modelist'
@@ -9,12 +10,6 @@ import 'brace/mode/javascript'
 import 'brace/mode/json'
 import 'brace/mode/python'
 import 'brace/mode/markdown'
-
-const stringify = (content) => {
-  if (typeof content === 'string')
-    return content
-  return JSON.stringify(content)
-}
 
 const Snippet = ({ content }) => (
   <AceEditor
@@ -28,7 +23,7 @@ const Snippet = ({ content }) => (
     editorProps={{
       $blockScrolling: true
     }}
-    value={stringify(content)}
+    value={contentFormatter(content)}
   />
 )
 
