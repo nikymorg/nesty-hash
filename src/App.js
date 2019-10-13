@@ -6,20 +6,15 @@ import DataGenerator from './helpers/generators'
 import './assets/custom.css'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      language: 'ruby',
-      dataStructure: {},
-      content: 'Generate a hash or array using the form above'
-    }
-    this.setStructure = this.setStructure.bind(this)
+  state = {
+    language: 'ruby',
+    dataStructure: {},
+    content: 'Generate a hash or array using the form above'
   }
 
-  setStructure(dataStructure) {
+  setStructure = ({depth, dataTypes}) => {
     this.setState({
-      dataStructure,
-      content: DataGenerator(dataStructure.depth, dataStructure.dataTypes)
+      content: DataGenerator(depth, dataTypes)
     })
   }
 

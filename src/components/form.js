@@ -9,37 +9,29 @@ const dataMapper = {
 }
 
 class HashForm extends Component {
-  constructor() {
-    super()
-    this.state = {
-      dataTypes: [],
-      depth: 1
-    }
-    this.handleDataTypes = this.handleDataTypes.bind(this)
-    this.handleDepth = this.handleDepth.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.renderCheckboxes = this.renderCheckboxes.bind(this)
-    this.isChecked = this.isChecked.bind(this)
+  state = {
+     dataTypes: [],
+     depth: 1
   }
 
-  handleDataTypes(e, { value }) {
+  handleDataTypes = (e, { value }) => {
     if (this.isChecked(value)) {
-      this.setState((prevState) => ({
+      this.setState(prevState => ({
         dataTypes: prevState.dataTypes.filter(type => type !== value)
       }))
     } else {
-      this.setState((prevState) => ({
+      this.setState(prevState => ({
         dataTypes: [...prevState.dataTypes, value]
       }))
     }
   }
 
-  handleDepth({ target: { value } }) {
+  handleDepth = ({ target: { value } }) => {
     const depth = parseInt(value, 10)
     this.setState({ depth })
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     if (!validate.form(this.state.dataTypes)) {
       return alert('Please include both nested and unnested data types for the generator')
     }
@@ -50,7 +42,7 @@ class HashForm extends Component {
     })
   }
 
-  renderCheckboxes(dataTypes) {
+  renderCheckboxes = (dataTypes) => {
     return dataTypes.map(type => <Form.Checkbox
       key={ type }
       label={ type }
@@ -60,7 +52,7 @@ class HashForm extends Component {
     />)
   }
 
-  isChecked(dataType) {
+  isChecked = (dataType) => {
     return this.state.dataTypes.includes(dataType)
   }
 
