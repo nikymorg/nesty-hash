@@ -28,7 +28,7 @@ const generate = {
     }
     return obj
   },
-  hashKey: (dataTypes) => {
+  hashKey: dataTypes => {
     const dataType = randomize.unnestedType(dataTypes)
     return generate[dataType]()
   },

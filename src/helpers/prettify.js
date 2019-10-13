@@ -34,39 +34,25 @@ const prettify = (content) => {
 }
 
 const format = {
-  default: (c) => {
-    return c
-  },
-  indent: (indent) => {
-    return '\t'.repeat(indent)
-  },
-  newLine: (indent) => {
-    return indent > 0 ? '\n' : ''
-  },
-  opening: (c, indent) => {
-    return [
+  default: c => c,
+  indent: indent => '\t'.repeat(indent),
+  newLine: indent => indent > 0 ? '\n' : '',
+  opening: (c, indent) => [
       format.default(c),
       format.newLine(indent),
       format.indent(indent)
-    ].join('')
-  },
-  closing: (c, indent) => {
-    return [
+    ].join(''),
+  closing: (c, indent) => [
       format.newLine(indent+1),
       format.indent(indent),
       format.default(c),
-    ].join('')
-  },
-  comma: (c, indent) => {
-    return [
+    ].join(''),
+  comma: (c, indent) => [
       format.default(c),
       format.newLine(indent),
       format.indent(indent)
-    ].join('')
-  },
-  colon: (c) => {
-    return  c + ' ' 
-  }
+    ].join(''),
+  colon: c => c + ' '
 }
 
 export default contentFormatter
