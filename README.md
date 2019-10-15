@@ -1,5 +1,5 @@
 ## Nesty Hash
-You can see Nesty Hash live at [https://nesty-hash.herokuapp.com/](https://nesty-hash.herokuapp.com/).
+You can see Nesty Hash live at [https://nesty-hash.netlify.com/](https://nesty-hash.netlify.com/).
 
 #### About
 Nesty Hash is a tool I designed to help my programming students gain more experience with nested data structures. It allows the user to randomly generate nested data structures by selecting data types to include and a maximum nesting depth.
