@@ -3,6 +3,26 @@ import randomize from './randomizers'
 // TODO: find a better way to set this
 let words
 
+const array = (depth, dataTypes) => {
+  const length = randomize.number(4) + 1
+  let arr = []
+  for (let i = 0; i < length; i++) {
+    arr.push(DataGenerator(depth - 1, dataTypes))
+  }
+  return arr
+}
+
+const hash = (depth, dataTypes) => {
+  const length = randomize.number(4) + 1
+  let obj = {}
+  for (let i = 0; i < length; i++) {
+    const key = generate.hashKey(dataTypes)
+    const value = DataGenerator(depth - 1, dataTypes)
+    obj[key] = value
+  }
+  return obj
+}
+
 const generate = {
   wordList:
     fetch('/words.txt')
@@ -10,24 +30,11 @@ const generate = {
       .then(text => {
         words = text.split('\n')
       }),
-  array: (depth, dataTypes) => {
-    const length = randomize.number(4) + 1
-    let arr = []
-    for (let i = 0; i < length; i++) {
-      arr.push(DataGenerator(depth - 1, dataTypes))
-    }
-    return arr
-  },
-  hash: (depth, dataTypes) => {
-    const length = randomize.number(4) + 1
-    let obj = {}
-    for (let i = 0; i < length; i++) {
-      const key = generate.hashKey(dataTypes)
-      const value = DataGenerator(depth - 1, dataTypes)
-      obj[key] = value
-    }
-    return obj
-  },
+  array,
+  collection: array,
+  hash,
+  object: hash,
+  dictionary: hash,
   hashKey: dataTypes => {
     const dataType = randomize.unnestedType(dataTypes)
     return generate[dataType]()
@@ -36,7 +43,8 @@ const generate = {
     return randomize.arrayEl(words)
   },
   number: () => {
-    return randomize.number(100000)
+    let num = randomize.number(100000)
+    return num
   }
 }
 

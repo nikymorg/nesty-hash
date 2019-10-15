@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import validate from '../helpers/validators'
-
-const dataMapper = {
-  ruby: ['string', 'number', 'array', 'hash'],
-  javascript: ['string', 'number', 'array', 'object'],
-  python: ['string', 'number', 'collection', 'dictionary']
-}
+import { languages, languageMapper } from '../helpers/constants'
 
 class HashForm extends Component {
   state = {
@@ -15,7 +10,7 @@ class HashForm extends Component {
   }
 
   handleDataTypes = (e, { value }) => {
-    if (this.isChecked(value)) {
+    if (this.isCheckedDataType(value)) {
       this.setState(prevState => ({
         dataTypes: prevState.dataTypes.filter(type => type !== value)
       }))
@@ -27,8 +22,7 @@ class HashForm extends Component {
   }
 
   handleDepth = ({ target: { value } }) => {
-    const depth = parseInt(value, 10)
-    this.setState({ depth })
+    this.setState({ depth: parseInt(value, 10) })
   }
 
   handleSubmit = () => {
@@ -42,19 +36,20 @@ class HashForm extends Component {
     })
   }
 
-  renderCheckboxes = (dataTypes) => {
-    return dataTypes.map(type => <Form.Checkbox
-      key={ type }
-      label={ type }
-      value={ type }
-      onChange={ this.handleDataTypes }
-      checked={ this.isChecked(type) }
+  renderFields = (list, isChecked, onChange, field) => {
+    const Field = field.match('radio') ? Form.Radio : Form.Checkbox
+    return list.map(item => <Field
+      key={ item }
+      label={ item }
+      value={ item }
+      onChange={ onChange }
+      checked={ isChecked(item) }
     />)
   }
 
-  isChecked = (dataType) => {
-    return this.state.dataTypes.includes(dataType)
-  }
+  isCheckedDataType = item => this.state.dataTypes.includes(item)
+
+  isCheckedLanguage = item => !!this.props.language.match(item)
 
   render() {
     const { language } = this.props
@@ -66,13 +61,33 @@ class HashForm extends Component {
         onSubmit={ this.handleSubmit }
         size='large'
       >
+
         <Form.Group
           inline={true}
-          className='item-form-checkbox'
+          className='item-form-language'
+        >
+          <Form.Field control='label'>Language:</Form.Field>
+          { this.renderFields(
+            languages,
+            this.isCheckedLanguage,
+            this.props.setLanguage,
+            'radio'
+          ) }
+        </Form.Group>
+
+        <Form.Group
+          inline={true}
+          className='item-form-data'
         >
           <Form.Field control='label'>Data Types:</Form.Field>
-          { this.renderCheckboxes(dataMapper[language]) }
+          { this.renderFields(
+            languageMapper[language].dataTypes,
+            this.isCheckedDataType,
+            this.handleDataTypes,
+            'checkbox'
+          ) }
         </Form.Group>
+
         <Form.Field
           inline={true}
           className='item-form-number'
@@ -84,10 +99,11 @@ class HashForm extends Component {
           value={ depth }
           onChange={ this.handleDepth }
         />
+
         <Form.Button
           basic
           className='item-form-submit'
-          color='grey'
+          color='black'
         >
           Create Data Structure
         </Form.Button>

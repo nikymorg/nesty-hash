@@ -32,11 +32,13 @@ body {
 .form-container {
   display: grid;
   justify-items: center;
+  width: 60%;
   grid-template-columns: auto;
   grid-template-rows: auto auto auto;
   grid-row-gap: 5px;
   grid-template-areas:
-    'form-checkbox'
+    'form-language'
+    'form-data'
     'form-number'
     'form-submit';
 }
@@ -49,16 +51,20 @@ body {
   border-radius: 5px;
 }
 
-.item-form-checkbox {
-  grid-area: form-checkbox
+.item-form-data {
+  grid-area: form-data;
+}
+
+.item-form-language {
+  grid-area: form-language;
 }
 
 .item-form-number {
-  grid-area: form-number
+  grid-area: form-number;
 }
 
 .item-form-submit {
-  grid-area: form-submit
+  grid-area: form-submit;
 }
 
 .item-header {
@@ -81,15 +87,18 @@ body {
 /* Header Gradients */
 
 .ruby-gradient {
-  background: #00C9FF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgba(214,35,35);  /* fallback for old browsers */
+  background-image: linear-gradient( 70.5deg,  rgba(214,35,35,1) 2.7%, rgba(190,81,184,1) 97.8% );
 }
 
 .javascript-gradient {
-  background: #e66465;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #e66465, #9198e5);
-  background: linear-gradient(to right, #e66465, #9198e5);
+  background: rgba(255,95,162);  /* fallback for old browsers */
+  background-image: linear-gradient( 104.9deg, rgba(255,95,162,1) 2.3%, rgba(254,201,154,1) 92.7% );
+}
+
+.python-gradient {
+  background: rgba(0,255,176);  /* fallback for old browsers */
+  background-image: radial-gradient( circle farthest-corner at 10% 20%, rgba(0,255,176,1) 0%, rgba(66,105,242,1) 90% );
 }
 
 
