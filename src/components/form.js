@@ -26,9 +26,7 @@ class HashForm extends Component {
   }
 
   handleSubmit = () => {
-    if (!validate.form(this.state.dataTypes)) {
-      return alert('Please include both nested and unnested data types for the generator')
-    }
+    if (!validate.form(this.state.dataTypes)) return
     this.props.setStructure(this.state)
     this.setState({
       dataTypes: [],
@@ -44,6 +42,7 @@ class HashForm extends Component {
       value={ item }
       onChange={ onChange }
       checked={ isChecked(item) }
+      className={ field.match('checkbox') && 'data-fields' }
     />)
   }
 
@@ -54,6 +53,7 @@ class HashForm extends Component {
   render() {
     const { language } = this.props
     const { depth } = this.state
+    const invalidForm = !validate.form(this.state.dataTypes)
 
     return (
       <Form
@@ -79,7 +79,7 @@ class HashForm extends Component {
           inline={true}
           className='item-form-data'
         >
-          <Form.Field control='label'>Data Types:</Form.Field>
+          <Form.Field control='label' className='data-fields'>Data Types:</Form.Field>
           { this.renderFields(
             languageMapper[language].dataTypes,
             this.isCheckedDataType,
@@ -104,9 +104,17 @@ class HashForm extends Component {
           basic
           className='item-form-submit'
           color='black'
+          disabled={ invalidForm }
         >
           Create Data Structure
         </Form.Button>
+
+        { invalidForm &&
+          <div className='error-message'>
+            Please include both nested and unnested data types
+          </div>
+        }
+
       </Form>
     )
   }

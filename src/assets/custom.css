@@ -53,6 +53,7 @@ body {
 
 .item-form-data {
   grid-area: form-data;
+  width: 100%;
 }
 
 .item-form-language {
@@ -81,6 +82,15 @@ body {
 
 .item-title {
   grid-area: title;
+}
+
+.data-fields {
+  width: 20%;
+}
+
+.error-message {
+  font-style: italic;
+  color: red;
 }
 
 
