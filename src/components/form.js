@@ -59,7 +59,7 @@ class HashForm extends Component {
       <Form
         className='item-form form-container'
         onSubmit={ this.handleSubmit }
-        size='large'
+        size='small'
       >
 
         <Form.Group
